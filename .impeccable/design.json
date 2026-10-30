@@ -81,7 +81,7 @@
       },
       "floor": {
         "role": "neutral",
-        "displayName": "Maple Floor",
+        "displayName": "Sport Floor",
         "canonical": "oklch(82.0% 0.086 77)",
         "tonalRamp": [
           "#130900",
@@ -209,7 +209,7 @@
     "shadows": [
       {
         "name": "lift",
-        "value": "0 1px 2px rgb(74 44 8 / 0.18), 0 8px 24px -12px rgb(74 44 8 / 0.35)",
+        "value": "0 1px 2px rgb(19 40 48 / 0.16), 0 8px 24px -12px rgb(19 40 48 / 0.32)",
         "purpose": "Light theme. Primary button hover, drag chip, dragged sequence row. Never at rest."
       },
       {
@@ -271,7 +271,7 @@
       "refersTo": "button-primary-work",
       "description": "Solid court-blue paint; begins or resumes the work period.",
       "html": "<button class=\"ds-btn ds-btn-work\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polygon points=\"6 3 20 12 6 21 6 3\"/></svg> Start work</button>",
-      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; font:600 18px/1 'Barlow', system-ui, sans-serif; padding:16px 26px; min-width:170px; border-radius:6px; border:3px solid transparent; cursor:pointer; transition: background-color 120ms ease-out, transform 120ms ease-out, box-shadow 120ms ease-out; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline:3px solid var(--focus, #1d4fa6); outline-offset:2px; } .ds-btn-work { background: var(--work, #1d4fa6); color: var(--work-ink, #fff); } .ds-btn-work:hover { box-shadow: var(--shadow, 0 1px 2px rgb(74 44 8 / 0.18), 0 8px 24px -12px rgb(74 44 8 / 0.35)); }"
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; font:600 18px/1 'Barlow', system-ui, sans-serif; padding:16px 26px; min-width:170px; border-radius:6px; border:3px solid transparent; cursor:pointer; transition: background-color 120ms ease-out, transform 120ms ease-out, box-shadow 120ms ease-out; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline:3px solid var(--focus, #1b47a0); outline-offset:2px; } .ds-btn-work { background: var(--work, #1b47a0); color: var(--work-ink, #fff); } .ds-btn-work:hover { box-shadow: var(--shadow, 0 1px 2px rgb(19 40 48 / 0.16), 0 8px 24px -12px rgb(19 40 48 / 0.32)); }"
     },
     {
       "name": "Line Button",
@@ -279,7 +279,7 @@
       "refersTo": "button-line",
       "description": "A boundary line you can press; running controls (Pause, Skip, Done for now).",
       "html": "<div style=\"display:flex;gap:14px\"><button class=\"ds-btn ds-btn-line\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"14\" y=\"4\" width=\"4\" height=\"16\" rx=\"1\"/><rect x=\"6\" y=\"4\" width=\"4\" height=\"16\" rx=\"1\"/></svg> Pause</button><button class=\"ds-btn ds-btn-line\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polygon points=\"5 4 15 12 5 20 5 4\"/><line x1=\"19\" x2=\"19\" y1=\"5\" y2=\"19\"/></svg> Skip to exercise</button></div>",
-      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; font:600 18px/1 'Barlow', system-ui, sans-serif; padding:16px 26px; min-width:170px; border-radius:6px; border:3px solid transparent; cursor:pointer; transition: background-color 120ms ease-out, transform 120ms ease-out, box-shadow 120ms ease-out; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline:3px solid var(--focus, #1d4fa6); outline-offset:2px; } .ds-btn-line { background: transparent; color: var(--ink, #2a1c0c); border-color: var(--line, #fffaf0); } .ds-btn-line:hover { background: var(--line-soft, rgb(255 250 240 / 0.55)); }"
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; font:600 18px/1 'Barlow', system-ui, sans-serif; padding:16px 26px; min-width:170px; border-radius:6px; border:3px solid transparent; cursor:pointer; transition: background-color 120ms ease-out, transform 120ms ease-out, box-shadow 120ms ease-out; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline:3px solid var(--focus, #1b47a0); outline-offset:2px; } .ds-btn-line { background: transparent; color: var(--ink, #13222a); border-color: var(--line, #ffffff); } .ds-btn-line:hover { background: var(--line-soft, rgb(255 255 255 / 0.6)); }"
     },
     {
       "name": "Phase Pill",
@@ -287,7 +287,7 @@
       "refersTo": "pill-work",
       "description": "Signage status badge; blue for work, orange for exercise / up next / done, outlined when idle.",
       "html": "<div style=\"display:flex;gap:10px\"><span class=\"ds-pill ds-pill-work\">Work</span><span class=\"ds-pill ds-pill-ex\">Exercise</span><span class=\"ds-pill\">Ready</span></div>",
-      "css": ".ds-pill { display:inline-block; font:700 14px/1 'Barlow Condensed', 'Barlow', sans-serif; letter-spacing:0.14em; text-transform:uppercase; padding:7px 12px 6px; border-radius:999px; border:2px solid var(--line, #fffaf0); color: var(--ink, #2a1c0c); } .ds-pill-work { background: var(--work, #1d4fa6); border-color: var(--work, #1d4fa6); color: var(--work-ink, #fff); } .ds-pill-ex { background: var(--exercise, #b0440a); border-color: var(--exercise, #b0440a); color: var(--exercise-ink, #fff); }"
+      "css": ".ds-pill { display:inline-block; font:700 14px/1 'Barlow Condensed', 'Barlow', sans-serif; letter-spacing:0.14em; text-transform:uppercase; padding:7px 12px 6px; border-radius:999px; border:2px solid var(--line, #ffffff); color: var(--ink, #13222a); } .ds-pill-work { background: var(--work, #1b47a0); border-color: var(--work, #1b47a0); color: var(--work-ink, #fff); } .ds-pill-ex { background: var(--exercise, #9c3b08); border-color: var(--exercise, #9c3b08); color: var(--exercise-ink, #fff); }"
     },
     {
       "name": "Text Field",
@@ -295,7 +295,7 @@
       "refersTo": "input",
       "description": "Raised-floor field with a white line border; focus shifts the border to blue.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">New exercise</span><input class=\"ds-input\" placeholder=\"e.g. Shoulder rolls\"></label>",
-      "css": ".ds-field { display:grid; gap:5px; } .ds-field-label { font:600 12px/1 'Barlow', system-ui, sans-serif; letter-spacing:0.06em; text-transform:uppercase; color: var(--ink-soft, #5a3f1e); } .ds-input { font:500 15px/1.2 'Barlow', system-ui, sans-serif; color: var(--ink, #2a1c0c); background: var(--floor-raised, #ecca97); border:2px solid var(--line, #fffaf0); border-radius:6px; padding:9px 10px; caret-color: var(--work, #1d4fa6); } .ds-input::placeholder { color: var(--ink-faint, #7a5a32); } .ds-input:focus { outline:none; border-color: var(--focus, #1d4fa6); }"
+      "css": ".ds-field { display:grid; gap:5px; } .ds-field-label { font:600 12px/1 'Barlow', system-ui, sans-serif; letter-spacing:0.06em; text-transform:uppercase; color: var(--ink-soft, #33464e); } .ds-input { font:500 15px/1.2 'Barlow', system-ui, sans-serif; color: var(--ink, #13222a); background: var(--floor-raised, #dae6e7); border:2px solid var(--line, #ffffff); border-radius:6px; padding:9px 10px; caret-color: var(--work, #1b47a0); } .ds-input::placeholder { color: var(--ink-faint, #45585f); } .ds-input:focus { outline:none; border-color: var(--focus, #1b47a0); }"
     },
     {
       "name": "Topbar Tabs",
@@ -303,7 +303,7 @@
       "refersTo": "tab",
       "description": "Wordmark in both paints, tabs whose active marker lands on the 3px sideline rule.",
       "html": "<nav class=\"ds-top\"><span class=\"ds-mark\">MO<span>VE</span></span><button class=\"ds-tab\" aria-current=\"page\">Timer</button><button class=\"ds-tab\">Setup</button><button class=\"ds-tab\">Settings</button></nav>",
-      "css": ".ds-top { display:flex; align-items:center; gap:24px; padding:12px 20px; border-bottom:3px solid var(--line, #fffaf0); background: var(--floor, #e4bd84); } .ds-mark { font:700 26px/1 'Barlow Condensed', sans-serif; letter-spacing:0.08em; color: var(--work, #1d4fa6); } .ds-mark span { color: var(--exercise, #b0440a); } .ds-tab { font:600 15px/1 'Barlow', system-ui, sans-serif; color: var(--ink-soft, #5a3f1e); background:none; border:0; padding:10px 14px; border-radius:6px; cursor:pointer; position:relative; } .ds-tab:hover, .ds-tab[aria-current='page'] { color: var(--ink, #2a1c0c); } .ds-tab[aria-current='page']::after { content:''; position:absolute; left:14px; right:14px; bottom:-15px; height:3px; background: var(--ink, #2a1c0c); } .ds-tab:focus-visible { outline:3px solid var(--focus, #1d4fa6); outline-offset:2px; }"
+      "css": ".ds-top { display:flex; align-items:center; gap:24px; padding:12px 20px; border-bottom:3px solid var(--line, #ffffff); background: var(--floor, #ccdbdc); } .ds-mark { font:700 26px/1 'Barlow Condensed', sans-serif; letter-spacing:0.08em; color: var(--work, #1b47a0); } .ds-mark span { color: var(--exercise, #9c3b08); } .ds-tab { font:600 15px/1 'Barlow', system-ui, sans-serif; color: var(--ink-soft, #33464e); background:none; border:0; padding:10px 14px; border-radius:6px; cursor:pointer; position:relative; } .ds-tab:hover, .ds-tab[aria-current='page'] { color: var(--ink, #13222a); } .ds-tab[aria-current='page']::after { content:''; position:absolute; left:14px; right:14px; bottom:-15px; height:3px; background: var(--ink, #13222a); } .ds-tab:focus-visible { outline:3px solid var(--focus, #1b47a0); outline-offset:2px; }"
     },
     {
       "name": "Segmented Control",
@@ -311,7 +311,7 @@
       "refersTo": "segment-selected",
       "description": "Line-paint box of options; selected inverts to ink.",
       "html": "<span class=\"ds-seg\" role=\"radiogroup\"><button class=\"ds-segment\" role=\"radio\" aria-checked=\"false\">Light</button><button class=\"ds-segment\" role=\"radio\" aria-checked=\"true\">System</button><button class=\"ds-segment\" role=\"radio\" aria-checked=\"false\">Dark</button></span>",
-      "css": ".ds-seg { display:inline-flex; border:2px solid var(--line, #fffaf0); border-radius:6px; overflow:hidden; } .ds-segment { font:600 14px/1 'Barlow', system-ui, sans-serif; padding:10px 14px; background:transparent; color: var(--ink-soft, #5a3f1e); border:0; cursor:pointer; } .ds-segment + .ds-segment { border-left:2px solid var(--line, #fffaf0); } .ds-segment:hover { color: var(--ink, #2a1c0c); background: var(--line-soft, rgb(255 250 240 / 0.55)); } .ds-segment[aria-checked='true'] { background: var(--ink, #2a1c0c); color: var(--floor, #e4bd84); }"
+      "css": ".ds-seg { display:inline-flex; border:2px solid var(--line, #ffffff); border-radius:6px; overflow:hidden; } .ds-segment { font:600 14px/1 'Barlow', system-ui, sans-serif; padding:10px 14px; background:transparent; color: var(--ink-soft, #33464e); border:0; cursor:pointer; } .ds-segment + .ds-segment { border-left:2px solid var(--line, #ffffff); } .ds-segment:hover { color: var(--ink, #13222a); background: var(--line-soft, rgb(255 255 255 / 0.6)); } .ds-segment[aria-checked='true'] { background: var(--ink, #13222a); color: var(--floor, #ccdbdc); }"
     },
     {
       "name": "Court Ring",
@@ -319,7 +319,7 @@
       "refersTo": null,
       "description": "Signature radial timer: centre circle with the remaining time painted as a 30px butt-capped arc, half-court line behind.",
       "html": "<div class=\"ds-court\"><div class=\"ds-half\"></div><div class=\"ds-ring\"><svg viewBox=\"0 0 400 400\"><circle class=\"ds-ring-floor\" cx=\"200\" cy=\"200\" r=\"193\"/><circle class=\"ds-ring-line\" cx=\"200\" cy=\"200\" r=\"172\"/><circle class=\"ds-ring-paint\" cx=\"200\" cy=\"200\" r=\"172\" stroke-dasharray=\"1080.7\" stroke-dashoffset=\"378\" transform=\"rotate(-90 200 200)\"/><circle class=\"ds-ring-line ds-ring-inner\" cx=\"200\" cy=\"200\" r=\"147\"/></svg><span class=\"ds-ring-time\">15:38</span></div></div>",
-      "css": ".ds-court { position:relative; display:grid; place-items:center; padding:16px 0; background: var(--floor, #e4bd84); } .ds-half { position:absolute; left:0; right:0; top:50%; height:4px; margin-top:-2px; background: var(--line, #fffaf0); } .ds-ring { position:relative; width:260px; aspect-ratio:1; container-type:size; } .ds-ring svg { display:block; width:100%; height:100%; overflow:visible; } .ds-ring-floor { fill: var(--floor, #e4bd84); } .ds-ring-line { fill:none; stroke: var(--line, #fffaf0); stroke-width:4; } .ds-ring-inner { stroke: var(--line-soft, rgb(255 250 240 / 0.55)); stroke-width:2; } .ds-ring-paint { fill:none; stroke: var(--work, #1d4fa6); stroke-width:30; stroke-linecap:butt; transition: stroke-dashoffset 250ms linear; } .ds-ring:hover .ds-ring-paint { stroke-width:10; } .ds-ring-time { position:absolute; inset:0; display:grid; place-content:center; font:600 25cqh/0.9 'Barlow Condensed', sans-serif; letter-spacing:-0.01em; font-variant-numeric: tabular-nums; color: var(--ink, #2a1c0c); }"
+      "css": ".ds-court { position:relative; display:grid; place-items:center; padding:16px 0; background: var(--floor, #ccdbdc); } .ds-half { position:absolute; left:0; right:0; top:50%; height:4px; margin-top:-2px; background: var(--line, #ffffff); } .ds-ring { position:relative; width:260px; aspect-ratio:1; container-type:size; } .ds-ring svg { display:block; width:100%; height:100%; overflow:visible; } .ds-ring-floor { fill: var(--floor, #ccdbdc); } .ds-ring-line { fill:none; stroke: var(--line, #ffffff); stroke-width:4; } .ds-ring-inner { stroke: var(--line-soft, rgb(255 255 255 / 0.6)); stroke-width:2; } .ds-ring-paint { fill:none; stroke: var(--work, #1b47a0); stroke-width:30; stroke-linecap:butt; transition: stroke-dashoffset 250ms linear; } .ds-ring:hover .ds-ring-paint { stroke-width:10; } .ds-ring-time { position:absolute; inset:0; display:grid; place-content:center; font:600 25cqh/0.9 'Barlow Condensed', sans-serif; letter-spacing:-0.01em; font-variant-numeric: tabular-nums; color: var(--ink, #13222a); }"
     },
     {
       "name": "Lane Timer",
@@ -327,25 +327,25 @@
       "refersTo": null,
       "description": "Mini-window timer: a lane stripe between two white lines, painted in the period colour; hatches when paused.",
       "html": "<div class=\"ds-lane\"><div class=\"ds-lane-paint\"></div></div>",
-      "css": ".ds-lane { width:320px; height:12px; background: var(--line-soft, rgb(255 250 240 / 0.55)); border-top:2px solid var(--line, #fffaf0); border-bottom:2px solid var(--line, #fffaf0); overflow:hidden; } .ds-lane-paint { height:100%; background: var(--exercise, #b0440a); transform: scaleX(0.52); transform-origin:left; transition: transform 250ms linear; } .ds-lane:hover .ds-lane-paint { -webkit-mask: repeating-linear-gradient(-45deg, #000 0 6px, transparent 6px 10px); mask: repeating-linear-gradient(-45deg, #000 0 6px, transparent 6px 10px); }"
+      "css": ".ds-lane { width:320px; height:12px; background: var(--line-soft, rgb(255 255 255 / 0.6)); border-top:2px solid var(--line, #ffffff); border-bottom:2px solid var(--line, #ffffff); overflow:hidden; } .ds-lane-paint { height:100%; background: var(--exercise, #9c3b08); transform: scaleX(0.52); transform-origin:left; transition: transform 250ms linear; } .ds-lane:hover .ds-lane-paint { -webkit-mask: repeating-linear-gradient(-45deg, #000 0 6px, transparent 6px 10px); mask: repeating-linear-gradient(-45deg, #000 0 6px, transparent 6px 10px); }"
     },
     {
       "name": "Sequence Score Row",
       "kind": "card",
       "refersTo": null,
       "description": "Setup sequence step: condensed step number, name, minutes, and a two-paint bar proportional to work and exercise time.",
-      "html": "<div class=\"ds-seq\"><span class=\"ds-seq-pos\">1</span><div class=\"ds-seq-body\"><div class=\"ds-seq-text\"><span class=\"ds-seq-name\">Cat Cow Stretch</span><span class=\"ds-seq-mins\">25 + 5 min</span></div><div class=\"ds-score\"><span style=\"flex:25;background:var(--work,#1d4fa6)\"></span><span style=\"flex:5;background:var(--exercise,#b0440a)\"></span></div></div></div>",
-      "css": ".ds-seq { display:flex; align-items:center; gap:6px; padding:8px 6px; border-radius:6px; background: var(--floor-deep, #d7a965); width:380px; font:400 15px/1.45 'Barlow', system-ui, sans-serif; color: var(--ink, #2a1c0c); } .ds-seq:hover { background: var(--line-soft, rgb(255 250 240 / 0.55)); } .ds-seq-pos { font:700 22px/1 'Barlow Condensed', sans-serif; width:26px; text-align:center; color: var(--ink-soft, #5a3f1e); } .ds-seq-body { flex:1; display:grid; gap:6px; } .ds-seq-text { display:flex; justify-content:space-between; gap:8px; } .ds-seq-name { font-weight:600; } .ds-seq-mins { color: var(--ink-soft, #5a3f1e); font-size:13px; } .ds-score { display:flex; gap:2px; height:8px; }"
+      "html": "<div class=\"ds-seq\"><span class=\"ds-seq-pos\">1</span><div class=\"ds-seq-body\"><div class=\"ds-seq-text\"><span class=\"ds-seq-name\">Cat Cow Stretch</span><span class=\"ds-seq-mins\">25 + 5 min</span></div><div class=\"ds-score\"><span style=\"flex:25;background:var(--work,#1b47a0)\"></span><span style=\"flex:5;background:var(--exercise,#9c3b08)\"></span></div></div></div>",
+      "css": ".ds-seq { display:flex; align-items:center; gap:6px; padding:8px 6px; border-radius:6px; background: var(--floor-deep, #b9cbcd); width:380px; font:400 15px/1.45 'Barlow', system-ui, sans-serif; color: var(--ink, #13222a); } .ds-seq:hover { background: var(--line-soft, rgb(255 255 255 / 0.6)); } .ds-seq-pos { font:700 22px/1 'Barlow Condensed', sans-serif; width:26px; text-align:center; color: var(--ink-soft, #33464e); } .ds-seq-body { flex:1; display:grid; gap:6px; } .ds-seq-text { display:flex; justify-content:space-between; gap:8px; } .ds-seq-name { font-weight:600; } .ds-seq-mins { color: var(--ink-soft, #33464e); font-size:13px; } .ds-score { display:flex; gap:2px; height:8px; }"
     }
   ],
   "narrative": {
     "northStar": "The Painted Court",
-    "overview": "**Creative North Star: \"The Painted Court\"**\n\nMOVE is a gymnasium floor. Light theme is sealed maple: a saturated honey ground with deeper grain-tone panels. Dark theme is a night court: a poured blue-black floor under the same white line paint. Time is not drawn as a widget. It is drawn as court markings: the centre circle is the radial timer, the half-court line runs through it edge to edge, the mini window is a lane stripe, and the sequence in Setup is a score of painted bars sized to each period's minutes.\n\nTwo paint colours carry every state. Court blue means work; key orange means exercise, and anything that asks you to act after an exercise (ready, finished). White boundary paint draws every neutral rule, outline and divider. Type is athletic signage: Barlow Condensed for numerals and headings, Barlow for UI text, tabular figures everywhere. The world is flat: no glass, no gradient fills, no texture. Depth is just paint over floor.\n\nThe system is built for a glance from across the room. One colour says which period you are in, one giant number says how long is left, and the exercise name says what to do. Everything else stays quiet on the floor.",
+    "overview": "**Creative North Star: \"The Painted Court\"**\n\nMOVE is a gymnasium floor. Light theme is a cool sport floor: a faint blue-gray ground with slightly deeper panels. Dark theme is a night court: a poured blue-black floor under the same white line paint. Time is not drawn as a widget. It is drawn as court markings: the centre circle is the radial timer, the half-court line runs through it edge to edge, the mini window is a lane stripe, and the sequence in Setup is a score of painted bars sized to each period's minutes.\n\nTwo paint colours carry every state. Court blue means work; key orange means exercise, and anything that asks you to act after an exercise (ready, finished). White boundary paint draws every neutral rule, outline and divider. Type is athletic signage: Barlow Condensed for numerals and headings, Barlow for UI text, tabular figures everywhere. The world is flat: no glass, no gradient fills, no texture. Depth is just paint over floor.\n\nThe system is built for a glance from across the room. One colour says which period you are in, one giant number says how long is left, and the exercise name says what to do. Everything else stays quiet on the floor.",
     "keyCharacteristics": [
       "Two paints (blue = work, orange = exercise) plus white line paint; no other accent.",
       "Flat, painted strokes with square (butt) ends; 2-4px lines, 30px paint arc.",
       "Condensed signage numerals at container-relative scale, tabular throughout.",
-      "Light and dark are two real floors (maple, night court), switched by `prefers-color-scheme`.",
+      "Light and dark are two real floors (blue-gray sport floor, night court), switched by `prefers-color-scheme`.",
       "One authored transition: the boundary repaint."
     ],
     "rules": [
@@ -360,18 +360,18 @@
         "section": "colors"
       },
       {
-        "name": "The Large Orange Rule",
-        "body": "In the light theme key orange on maple measures 3.2:1, so orange text sits only at headline size (30px and up). Small text on orange uses `exercise-ink`, never the reverse.",
+        "name": "The Orange Text Rule",
+        "body": "In the light theme key orange on the floor measures 4.8:1, enough for text at any size; keep it on the main floor, since on `floor-deep` it drops to 4.1:1 and should stay at headline size there. Small text on orange uses `exercise-ink`, never the reverse.",
         "section": "colors"
       },
       {
         "name": "The Line Is Not A Signal Rule",
-        "body": "White line paint on maple is a low-contrast (1.7:1) boundary by design. It frames and divides; it never alone marks a state, a selection or an error.",
+        "body": "White line paint on the light floor is a low-contrast (1.4:1) boundary by design. It frames and divides; it never alone marks a state, a selection or an error.",
         "section": "colors"
       },
       {
-        "name": "The Honey Not Paper Rule",
-        "body": "The light floor stays saturated honey wood. Do not lighten it toward cream or off-white.",
+        "name": "The Blue-Gray Not White Rule",
+        "body": "The light floor stays a visible cool blue-gray (#ccdbdc). Do not lighten it toward white or warm it toward wood; white is reserved for line paint.",
         "section": "colors"
       },
       {
@@ -401,7 +401,7 @@
     ],
     "donts": [
       "**Don't** introduce a third accent or a gradient fill; the paused hatch is a stripe mask over paint, not a gradient.",
-      "**Don't** add glass, blur, texture or wood-grain imagery; the floor is a flat tone.",
+      "**Don't** add glass, blur, or texture imagery; the floor is a flat tone.",
       "**Don't** cast a shadow on anything at rest.",
       "**Don't** fade the light floor toward cream or paper.",
       "**Don't** use white line paint as the only signal of state, selection or error.",

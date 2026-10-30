@@ -2,22 +2,22 @@
 name: MOVE
 description: A pomodoro timer where every break is an exercise, drawn as a painted sports court.
 colors:
-  floor: "#e4bd84"
-  floor-deep: "#d7a965"
-  floor-raised: "#ecca97"
-  line: "#fffaf0"
-  line-soft: "rgb(255 250 240 / 0.55)"
-  ink: "#2a1c0c"
-  ink-soft: "#5a3f1e"
-  ink-faint: "#7a5a32"
-  work: "#1d4fa6"
+  floor: "#ccdbdc"
+  floor-deep: "#b9cbcd"
+  floor-raised: "#dae6e7"
+  line: "#ffffff"
+  line-soft: "rgb(255 255 255 / 0.6)"
+  ink: "#13222a"
+  ink-soft: "#33464e"
+  ink-faint: "#45585f"
+  work: "#1b47a0"
   work-ink: "#ffffff"
-  work-wash: "rgb(29 79 166 / 0.14)"
-  exercise: "#b0440a"
+  work-wash: "rgb(27 71 160 / 0.13)"
+  exercise: "#9c3b08"
   exercise-ink: "#ffffff"
-  exercise-wash: "rgb(176 68 10 / 0.14)"
+  exercise-wash: "rgb(156 59 8 / 0.12)"
   danger: "#a3200f"
-  focus: "#1d4fa6"
+  focus: "#1b47a0"
   floor-dark: "#10141c"
   floor-deep-dark: "#0a0d13"
   floor-raised-dark: "#181e2a"
@@ -164,7 +164,7 @@ components:
 
 **Creative North Star: "The Painted Court"**
 
-MOVE is a gymnasium floor. Light theme is sealed maple: a saturated honey ground with deeper grain-tone panels. Dark theme is a night court: a poured blue-black floor under the same white line paint. Time is not drawn as a widget. It is drawn as court markings: the centre circle is the radial timer, the half-court line runs through it edge to edge, the mini window is a lane stripe, and the sequence in Setup is a score of painted bars sized to each period's minutes.
+MOVE is a gymnasium floor. Light theme is a cool sport floor: a faint blue-gray ground with slightly deeper panels. Dark theme is a night court: a poured blue-black floor under the same white line paint. Time is not drawn as a widget. It is drawn as court markings: the centre circle is the radial timer, the half-court line runs through it edge to edge, the mini window is a lane stripe, and the sequence in Setup is a score of painted bars sized to each period's minutes.
 
 Two paint colours carry every state. Court blue means work; key orange means exercise, and anything that asks you to act after an exercise (ready, finished). White boundary paint draws every neutral rule, outline and divider. Type is athletic signage: Barlow Condensed for numerals and headings, Barlow for UI text, tabular figures everywhere. The world is flat: no glass, no gradient fills, no texture. Depth is just paint over floor.
 
@@ -174,12 +174,12 @@ The system is built for a glance from across the room. One colour says which per
 - Two paints (blue = work, orange = exercise) plus white line paint; no other accent.
 - Flat, painted strokes with square (butt) ends; 2-4px lines, 30px paint arc.
 - Condensed signage numerals at container-relative scale, tabular throughout.
-- Light and dark are two real floors (maple, night court), switched by `prefers-color-scheme`.
+- Light and dark are two real floors (blue-gray sport floor, night court), switched by `prefers-color-scheme`.
 - One authored transition: the boundary repaint.
 
 ## Colors
 
-Honey wood or night poured floor, white line paint, and two saturated court paints; every token has a light and a dark value (dark keys carry the `-dark` suffix and map to the same CSS custom property).
+Blue-gray sport floor or night poured floor, white line paint, and two saturated court paints; every token has a light and a dark value (dark keys carry the `-dark` suffix and map to the same CSS custom property).
 
 ### Primary
 - **Court Blue** (`work` / `work-dark`): the work period. Ring paint, lane paint, Work pill, every Start work button, the work segment of the sequence score, text selection, input caret and the focus ring.
@@ -191,7 +191,7 @@ Honey wood or night poured floor, white line paint, and two saturated court pain
 - **Whistle Red** (`danger` / `danger-dark`): destructive confirmation only (Delete button, trash-icon hover). Never a phase colour.
 
 ### Neutral
-- **Maple Floor** (`floor`): the page ground. Saturated honey, not cream. Night: **Poured Night Court** (`floor-dark`).
+- **Sport Floor** (`floor`): the page ground. A faint, cool blue-gray, never white. Night: **Poured Night Court** (`floor-dark`).
 - **Grain Panel** (`floor-deep`): the Setup sequence panel and sequence rows; one step deeper than the floor.
 - **Sealed Top Coat** (`floor-raised`): input fills and the lifted (dragging) row.
 - **Boundary Line Paint** (`line`): topbar rule, half-court line, ring boundary, line-button outlines, input borders, the Setup centre line, segmented control. `line-soft` is the same paint thinned: hover fills, inner ring, lane track, dividers.
@@ -202,11 +202,11 @@ Honey wood or night poured floor, white line paint, and two saturated court pain
 
 **The Paint Is Never Alone Rule.** A phase colour always travels with a word (the pill label, the exercise name, "Paused", "of work"). Colour never carries state by itself.
 
-**The Large Orange Rule.** In the light theme key orange on maple measures 3.2:1, so orange text sits only at headline size (30px and up). Small text on orange uses `exercise-ink`, never the reverse.
+**The Orange Text Rule.** In the light theme key orange on the floor measures 4.8:1, enough for text at any size; keep it on the main floor, since on `floor-deep` it drops to 4.1:1 and should stay at headline size there. Small text on orange uses `exercise-ink`, never the reverse.
 
-**The Line Is Not A Signal Rule.** White line paint on maple is a low-contrast (1.7:1) boundary by design. It frames and divides; it never alone marks a state, a selection or an error.
+**The Line Is Not A Signal Rule.** White line paint on the light floor is a low-contrast (1.4:1) boundary by design. It frames and divides; it never alone marks a state, a selection or an error.
 
-**The Honey Not Paper Rule.** The light floor stays saturated honey wood. Do not lighten it toward cream or off-white.
+**The Blue-Gray Not White Rule.** The light floor stays a visible cool blue-gray (#ccdbdc). Do not lighten it toward white or warm it toward wood; white is reserved for line paint.
 
 ## Typography
 
@@ -242,7 +242,7 @@ Spacing runs on a loose rhythm: 2px hairline gaps between list rows and score se
 Flat by default. Depth comes from paint and floor tone: `floor-deep` sets a panel back, `floor-raised` brings a field forward, and paint sits on the floor rather than above it. A single soft shadow exists only for lift.
 
 ### Shadow Vocabulary
-- **Lift** (`box-shadow: 0 1px 2px rgb(74 44 8 / 0.18), 0 8px 24px -12px rgb(74 44 8 / 0.35)`; night: `0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -12px rgb(0 0 0 / 0.7)`): primary button hover, the drag chip, and a sequence row while dragged.
+- **Lift** (`box-shadow: 0 1px 2px rgb(19 40 48 / 0.16), 0 8px 24px -12px rgb(19 40 48 / 0.32)`; night: `0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -12px rgb(0 0 0 / 0.7)`): primary button hover, the drag chip, and a sequence row while dragged.
 
 ### Named Rules
 **The Lift Only Rule.** Nothing casts a shadow at rest. A shadow means "this is in your hand or under your pointer".
@@ -305,7 +305,7 @@ At each period boundary the incoming paint floods the window from the ring outwa
 
 ### Don't:
 - **Don't** introduce a third accent or a gradient fill; the paused hatch is a stripe mask over paint, not a gradient.
-- **Don't** add glass, blur, texture or wood-grain imagery; the floor is a flat tone.
+- **Don't** add glass, blur, or texture imagery; the floor is a flat tone.
 - **Don't** cast a shadow on anything at rest.
 - **Don't** fade the light floor toward cream or paper.
 - **Don't** use white line paint as the only signal of state, selection or error.

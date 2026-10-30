@@ -1,26 +1,26 @@
-/* MOVE: a painted sports court. Maple floor by day, poured night court in the dark.
+/* MOVE: a painted sports court. Cool blue-gray sport floor by day, poured night court in the dark.
    Two paint colours carry every state: court blue for work, key orange for exercise. */
 
 :root {
   color-scheme: light;
-  --floor: #e4bd84;
-  --floor-deep: #d7a965;
-  --floor-raised: #ecca97;
-  --line: #fffaf0;
-  --line-soft: rgb(255 250 240 / 0.55);
-  --ink: #2a1c0c;
-  --ink-soft: #5a3f1e;
-  --ink-faint: #7a5a32;
-  --work: #1d4fa6;
+  --floor: #ccdbdc;
+  --floor-deep: #b9cbcd;
+  --floor-raised: #dae6e7;
+  --line: #ffffff;
+  --line-soft: rgb(255 255 255 / 0.6);
+  --ink: #13222a;
+  --ink-soft: #33464e;
+  --ink-faint: #45585f;
+  --work: #1b47a0;
   --work-ink: #ffffff;
-  --work-wash: rgb(29 79 166 / 0.14);
-  --exercise: #b0440a;
+  --work-wash: rgb(27 71 160 / 0.13);
+  --exercise: #9c3b08;
   --exercise-ink: #ffffff;
-  --exercise-wash: rgb(176 68 10 / 0.14);
+  --exercise-wash: rgb(156 59 8 / 0.12);
   --danger: #a3200f;
   --danger-ink: #ffffff;
-  --focus: #1d4fa6;
-  --shadow: 0 1px 2px rgb(74 44 8 / 0.18), 0 8px 24px -12px rgb(74 44 8 / 0.35);
+  --focus: #1b47a0;
+  --shadow: 0 1px 2px rgb(19 40 48 / 0.16), 0 8px 24px -12px rgb(19 40 48 / 0.32);
 
   --display: 'Barlow Condensed', 'Barlow', sans-serif;
   --ui: 'Barlow', system-ui, sans-serif;
