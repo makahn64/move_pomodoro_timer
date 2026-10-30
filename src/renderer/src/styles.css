@@ -1,0 +1,926 @@
+/* MOVE: a painted sports court. Maple floor by day, poured night court in the dark.
+   Two paint colours carry every state: court blue for work, key orange for exercise. */
+
+:root {
+  color-scheme: light;
+  --floor: #e4bd84;
+  --floor-deep: #d7a965;
+  --floor-raised: #ecca97;
+  --line: #fffaf0;
+  --line-soft: rgb(255 250 240 / 0.55);
+  --ink: #2a1c0c;
+  --ink-soft: #5a3f1e;
+  --ink-faint: #7a5a32;
+  --work: #1d4fa6;
+  --work-ink: #ffffff;
+  --work-wash: rgb(29 79 166 / 0.14);
+  --exercise: #b0440a;
+  --exercise-ink: #ffffff;
+  --exercise-wash: rgb(176 68 10 / 0.14);
+  --danger: #a3200f;
+  --danger-ink: #ffffff;
+  --focus: #1d4fa6;
+  --shadow: 0 1px 2px rgb(74 44 8 / 0.18), 0 8px 24px -12px rgb(74 44 8 / 0.35);
+
+  --display: 'Barlow Condensed', 'Barlow', sans-serif;
+  --ui: 'Barlow', system-ui, sans-serif;
+  --radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --floor: #10141c;
+    --floor-deep: #0a0d13;
+    --floor-raised: #181e2a;
+    --line: #eef1f6;
+    --line-soft: rgb(238 241 246 / 0.22);
+    --ink: #eef1f6;
+    --ink-soft: #b4bccb;
+    --ink-faint: #8a93a5;
+    --work: #4a8cff;
+    --work-ink: #06142e;
+    --work-wash: rgb(74 140 255 / 0.16);
+    --exercise: #ff7a3d;
+    --exercise-ink: #2a0d00;
+    --exercise-wash: rgb(255 122 61 / 0.16);
+    --danger: #ff6b5a;
+    --danger-ink: #2a0500;
+    --focus: #8fb6ff;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -12px rgb(0 0 0 / 0.7);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--floor);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--work);
+  color: var(--work-ink);
+}
+
+input::selection {
+  background: var(--work);
+  color: var(--work-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-soft);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+h1,
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ---------- Shell ---------- */
+
+.shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 20px;
+  border-bottom: 3px solid var(--line);
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--work);
+}
+
+/* The two paint colours, as the court's own logo. */
+.wordmark span {
+  color: var(--exercise);
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.tab {
+  font: 600 15px/1 var(--ui);
+  color: var(--ink-soft);
+  background: none;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab[aria-current='page'] {
+  color: var(--ink);
+}
+
+.tab[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: -15px;
+  height: 3px;
+  background: var(--ink);
+}
+
+.page {
+  overflow: auto;
+  min-height: 0;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: 600 15px/1 var(--ui);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease-out,
+    transform 120ms ease-out,
+    box-shadow 120ms ease-out;
+  white-space: nowrap;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary[data-tone='work'] {
+  background: var(--work);
+  color: var(--work-ink);
+}
+.btn-primary[data-tone='exercise'] {
+  background: var(--exercise);
+  color: var(--exercise-ink);
+}
+.btn-primary:hover:not(:disabled) {
+  box-shadow: var(--shadow);
+}
+
+/* Painted-line buttons: a boundary line you can press. */
+.btn-line {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-line:hover:not(:disabled) {
+  background: var(--line-soft);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: var(--danger-ink);
+}
+
+.btn-big {
+  font-size: 18px;
+  padding: 16px 26px;
+  border-width: 3px;
+  min-width: 170px;
+}
+
+.btn-small {
+  font-size: 13px;
+  padding: 6px 10px;
+  gap: 5px;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius);
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  flex: none;
+}
+.icon-btn:hover {
+  background: var(--line-soft);
+  color: var(--ink);
+}
+.icon-btn-danger:hover {
+  color: var(--danger);
+}
+
+.link {
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- Status pill ---------- */
+
+.pill {
+  display: inline-block;
+  font: 700 14px/1 var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 7px 12px 6px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  color: var(--ink);
+}
+.pill[data-phase='work'] {
+  background: var(--work);
+  border-color: var(--work);
+  color: var(--work-ink);
+}
+.pill[data-phase='exercise'],
+.pill[data-phase='ready'],
+.pill[data-phase='finished'] {
+  background: var(--exercise);
+  border-color: var(--exercise);
+  color: var(--exercise-ink);
+}
+
+/* ---------- Timer ---------- */
+
+.timer {
+  height: 100%;
+  min-height: 520px;
+  display: grid;
+  /* Fixed rows so the ring never moves or resizes between phases. */
+  grid-template-rows: auto minmax(0, 1fr) 128px auto;
+  justify-items: center;
+  padding: 20px 24px 32px;
+  gap: 16px;
+}
+
+.timer-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.position {
+  font: 600 15px/1 var(--display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.court {
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+/* The half-court line runs the width of the floor, through the centre circle. */
+.court-halfline {
+  position: absolute;
+  left: -24px;
+  right: -24px;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  background: var(--line);
+}
+
+.ring {
+  position: relative;
+  height: 100%;
+  max-height: 440px;
+  aspect-ratio: 1;
+  container-type: size;
+}
+
+.ring svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ring-floor {
+  fill: var(--floor);
+}
+
+.ring-line {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 4;
+}
+
+.ring-line-inner {
+  stroke: var(--line-soft);
+  stroke-width: 2;
+}
+
+.ring-paint {
+  fill: none;
+  stroke-width: 30;
+  stroke-linecap: butt;
+  transition: stroke-dashoffset 250ms linear;
+}
+
+[data-tone='work'] .ring-paint {
+  stroke: var(--work);
+}
+[data-tone='exercise'] .ring-paint {
+  stroke: var(--exercise);
+}
+/* Paused paint keeps its colour but thins to a line, and the lane goes hatched. */
+.ring-paint[data-paused] {
+  stroke-width: 10;
+}
+.lane-paint[data-paused] {
+  -webkit-mask: repeating-linear-gradient(-45deg, #000 0 6px, transparent 6px 10px);
+  mask: repeating-linear-gradient(-45deg, #000 0 6px, transparent 6px 10px);
+}
+
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.ring-time {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 25cqh;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.ring-time[data-paused] {
+  color: var(--ink-soft);
+}
+
+.ring-note {
+  font: 600 4.5cqh/1 var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.timer-copy {
+  text-align: center;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  max-width: min(90%, 760px);
+  overflow: hidden;
+}
+
+.exercise-name {
+  font-size: clamp(30px, 5.2vw, 52px);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+/* The ready state stays lit in the exercise colour until you start work. */
+.shell[data-tone='exercise'] .timer-copy .exercise-name {
+  color: var(--exercise);
+}
+
+.next {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  gap: 14px;
+  min-height: 62px;
+}
+
+/* ---------- Boundary repaint: the floor floods with the new period's paint ---------- */
+
+.repaint {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  animation: repaint 1100ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.repaint[data-kind='work-end'] {
+  background: var(--exercise);
+}
+.repaint[data-kind='exercise-end'] {
+  background: var(--work);
+}
+
+@keyframes repaint {
+  0% {
+    clip-path: circle(0% at 50% 55%);
+    opacity: 0.9;
+  }
+  45% {
+    clip-path: circle(80% at 50% 55%);
+    opacity: 0.75;
+  }
+  100% {
+    clip-path: circle(80% at 50% 55%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .repaint {
+    display: none;
+  }
+  .ring-paint {
+    transition: none;
+  }
+}
+
+/* ---------- Mini ---------- */
+
+.mini {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.mini-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mini-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mini .pill {
+  font-size: 12px;
+  padding: 5px 9px 4px;
+}
+
+.mini-detail {
+  font: 600 17px/1.1 var(--display);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-time {
+  font: 600 30px/1 var(--display);
+  font-variant-numeric: tabular-nums;
+}
+.mini-time[data-paused] {
+  color: var(--ink-soft);
+}
+
+.mini-controls {
+  display: flex;
+  gap: 6px;
+}
+
+/* A lane line: white boundary, painted over in the period's colour. */
+.lane {
+  height: 12px;
+  background: var(--line-soft);
+  border-top: 2px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  overflow: hidden;
+}
+.lane-paint {
+  height: 100%;
+  transform-origin: left;
+  transition: transform 250ms linear;
+}
+.mini[data-tone='work'] .lane-paint {
+  background: var(--work);
+}
+.mini[data-tone='exercise'] .lane-paint {
+  background: var(--exercise);
+}
+.mini[data-phase='ready'] .mini-detail {
+  color: var(--exercise);
+}
+
+/* ---------- Setup ---------- */
+
+.setup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* The gap shows through as the court line between the two halves. */
+  gap: 3px;
+  background: var(--line);
+  min-height: 100%;
+}
+
+.panel {
+  padding: 22px 24px 32px;
+  min-width: 0;
+  background: var(--floor);
+}
+
+/* The sequence is the painted key of the court. */
+.panel-sequence {
+  background: var(--floor-deep);
+  transition: background-color 150ms ease-out;
+}
+.panel-sequence[data-over] {
+  background: var(--exercise-wash);
+}
+
+.panel-head {
+  margin-bottom: 16px;
+}
+
+.panel-head h2 {
+  font-size: 30px;
+  line-height: 1.05;
+}
+
+.panel-sub {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+}
+
+.add-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding-bottom: 18px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--line-soft);
+}
+
+.field {
+  display: grid;
+  gap: 5px;
+}
+.field-grow {
+  flex: 1;
+  min-width: 0;
+}
+.field-label {
+  font: 600 12px/1 var(--ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.input {
+  font: 500 15px/1.2 var(--ui);
+  color: var(--ink);
+  background: var(--floor-raised);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  padding: 9px 10px;
+  width: 100%;
+  user-select: text;
+  caret-color: var(--work);
+}
+.input::placeholder {
+  color: var(--ink-faint);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--focus);
+}
+.input-num {
+  width: 68px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.input-num::-webkit-inner-spin-button,
+.input-num::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-lg {
+  width: 90px;
+  font-size: 20px;
+  padding: 10px 12px;
+}
+
+.input-quiet {
+  background: transparent;
+  border-color: transparent;
+  padding: 6px 8px;
+}
+.input-quiet:hover {
+  border-color: var(--line-soft);
+}
+.input-quiet:focus {
+  background: var(--floor-raised);
+}
+
+.min-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.unit {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.lib-list,
+.seq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.lib-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px;
+  border-radius: var(--radius);
+}
+.lib-item:hover {
+  background: var(--line-soft);
+}
+.lib-item[data-dragging] {
+  opacity: 0.4;
+}
+.lib-item > .input-quiet:first-of-type {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+}
+
+.lib-item-confirm {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  background: var(--exercise-wash);
+}
+.lib-item-confirm:hover {
+  background: var(--exercise-wash);
+}
+.confirm-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.grip {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 34px;
+  border: 0;
+  background: none;
+  color: var(--ink-faint);
+  cursor: grab;
+  border-radius: var(--radius);
+  flex: none;
+  touch-action: none;
+}
+.grip:hover {
+  color: var(--ink);
+}
+.grip:active {
+  cursor: grabbing;
+}
+
+.seq-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 6px;
+  border-radius: var(--radius);
+  background: var(--floor-deep);
+  position: relative;
+}
+.seq-item:hover {
+  background: var(--line-soft);
+}
+.seq-item[data-dragging] {
+  z-index: 2;
+  background: var(--floor-raised);
+  box-shadow: var(--shadow);
+}
+
+.seq-pos {
+  font: 700 22px/1 var(--display);
+  width: 26px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.seq-body {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.seq-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.seq-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.seq-mins {
+  color: var(--ink-soft);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.score {
+  display: flex;
+  gap: 2px;
+  height: 8px;
+}
+.score-work {
+  background: var(--work);
+}
+.score-ex {
+  background: var(--exercise);
+}
+
+.empty {
+  color: var(--ink-soft);
+  margin: 12px 0 0;
+}
+.seq-empty {
+  border: 3px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.drag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--exercise);
+  color: var(--exercise-ink);
+  font-weight: 600;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: grabbing;
+}
+.drag-chip-min {
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* ---------- Settings ---------- */
+
+.settings {
+  max-width: 640px;
+  padding: 28px 24px 40px;
+}
+
+.settings h2 {
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 2px solid var(--line-soft);
+}
+
+.setting label,
+.setting > span:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.setting-name {
+  font-weight: 600;
+  font-size: 17px;
+}
+.setting-help {
+  color: var(--ink-soft);
+}
+
+.segmented {
+  display: inline-flex;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  flex: none;
+}
+.segment {
+  font: 600 14px/1 var(--ui);
+  padding: 10px 14px;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 0;
+  cursor: pointer;
+}
+.segment + .segment {
+  border-left: 2px solid var(--line);
+}
+.segment:hover {
+  color: var(--ink);
+  background: var(--line-soft);
+}
+.segment[aria-checked='true'] {
+  background: var(--ink);
+  color: var(--floor);
+}
+
+.settings-foot {
+  color: var(--ink-soft);
+  margin-top: 20px;
+}

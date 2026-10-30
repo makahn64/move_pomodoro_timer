@@ -1,0 +1,48 @@
+appId: app.move.timer
+productName: MOVE
+directories:
+  buildResources: build
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!docs/*'
+  - '!.superpowers/*'
+  - '!.impeccable/*'
+  - '!{PRODUCT.md,DESIGN.md}'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md,INSTALL.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+asarUnpack:
+  - resources/**
+win:
+  executableName: MOVE
+  target:
+    - nsis
+nsis:
+  artifactName: MOVE-${version}-setup.${ext}
+  shortcutName: MOVE
+  uninstallDisplayName: MOVE
+  createDesktopShortcut: always
+  oneClick: true
+mac:
+  category: public.app-category.productivity
+  target:
+    - target: dmg
+      arch: universal
+  # Ad-hoc signature: free, and required for the app to launch at all on Apple Silicon.
+  identity: '-'
+  hardenedRuntime: false
+  notarize: false
+dmg:
+  artifactName: MOVE-${version}.${ext}
+linux:
+  target:
+    - AppImage
+  maintainer: MOVE
+  category: Utility
+  executableName: move
+appImage:
+  artifactName: MOVE-${version}.${ext}
+npmRebuild: false
+publish: null
