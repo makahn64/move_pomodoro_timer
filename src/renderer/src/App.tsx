@@ -16,13 +16,15 @@ import { TimerView } from './components/TimerView'
 import { MiniView } from './components/MiniView'
 import { SetupView } from './components/SetupView'
 import { SettingsView } from './components/SettingsView'
+import { AboutView } from './components/AboutView'
 
-type Page = 'timer' | 'setup' | 'settings'
+type Page = 'timer' | 'setup' | 'settings' | 'about'
 
 const PAGES: { id: Page; label: string }[] = [
   { id: 'timer', label: 'Timer' },
   { id: 'setup', label: 'Setup' },
-  { id: 'settings', label: 'Settings' }
+  { id: 'settings', label: 'Settings' },
+  { id: 'about', label: 'About' }
 ]
 
 export interface SessionControls {
@@ -135,6 +137,7 @@ function App(): React.JSX.Element | null {
         {page === 'timer' && <TimerView {...controls} onOpenSetup={() => setPage('setup')} />}
         {page === 'setup' && <SetupView data={data} update={update} />}
         {page === 'settings' && <SettingsView data={data} update={update} />}
+        {page === 'about' && <AboutView />}
       </main>
       {flood}
     </div>

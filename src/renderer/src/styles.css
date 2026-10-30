@@ -10,6 +10,7 @@
   --line-soft: rgb(255 255 255 / 0.6);
   --rule: #586d73;
   --hover: rgb(255 255 255 / 0.5);
+  --tab-mark: var(--ink);
   --ink: #13222a;
   --ink-soft: #33464e;
   --ink-faint: #3d5057;
@@ -41,6 +42,7 @@
     --line-soft: rgb(238 241 246 / 0.22);
     --rule: #eef1f6;
     --hover: rgb(238 241 246 / 0.08);
+    --tab-mark: var(--work);
     --ink: #eef1f6;
     --ink-soft: #b4bccb;
     --ink-faint: #8a93a5;
@@ -190,7 +192,7 @@ h2 {
   right: 14px;
   bottom: -15px;
   height: 3px;
-  background: var(--ink);
+  background: var(--tab-mark);
 }
 
 .page {
@@ -944,4 +946,57 @@ h2 {
 .settings-foot {
   color: var(--ink-soft);
   margin-top: 20px;
+}
+
+/* ---------- About ---------- */
+
+.about {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 28px 24px 40px;
+  text-align: center;
+}
+
+.about-mark {
+  font-size: 96px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--work);
+}
+.about-mark span {
+  color: var(--exercise);
+}
+
+.about-line {
+  margin: 0;
+  font-size: 17px;
+  color: var(--ink-soft);
+}
+
+.about-facts {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 10px 18px;
+  border-top: 3px solid var(--line);
+  border-bottom: 3px solid var(--line);
+  font: 600 18px/1 var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.about-facts dt {
+  color: var(--ink-soft);
+}
+.about-facts dd {
+  margin: 0;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.about-copy {
+  margin: 0;
+  color: var(--ink-soft);
 }
