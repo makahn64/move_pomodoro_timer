@@ -2,6 +2,21 @@
 
 A pomodoro timer where every break is an exercise. Build a list of exercises, arrange them into a sequence, and MOVE alternates a work period with the next exercise.
 
+Download the Mac, Windows or Linux installer from [Releases](https://github.com/makahn64/move_pomodoro_timer/releases).
+
+| Work | Exercise |
+| --- | --- |
+| ![Timer during a work period, light mode](docs/screenshots/timer-work-light.png) | ![Timer during an exercise, dark mode](docs/screenshots/timer-exercise-dark.png) |
+
+**Setup:** drag exercises from your list into the sequence. Each bar shows that round's work and exercise time.
+
+![Setup page with the exercise list and the sequence](docs/screenshots/setup-light.png)
+
+**Mini window:** a small timer that stays out of the way while you work.
+
+![Mini window during work, dark mode](docs/screenshots/mini-dark.png)
+![Mini window waiting to start work, light mode](docs/screenshots/mini-light.png)
+
 - Spec and design decisions: [docs/MOVE-app-spec.md](docs/MOVE-app-spec.md)
 - Installing for non-technical users: [INSTALL.md](INSTALL.md)
 
