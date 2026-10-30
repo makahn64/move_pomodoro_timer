@@ -9,14 +9,18 @@ colors:
   line-soft: "rgb(255 255 255 / 0.6)"
   ink: "#13222a"
   ink-soft: "#33464e"
-  ink-faint: "#45585f"
+  ink-faint: "#3d5057"
+  rule: "#586d73"
+  hover: "rgb(255 255 255 / 0.5)"
+  off-bg: "#b9cbcd"
+  off-ink: "#3d5057"
   work: "#1b47a0"
   work-ink: "#ffffff"
   work-wash: "rgb(27 71 160 / 0.13)"
-  exercise: "#9c3b08"
+  exercise: "#8f3405"
   exercise-ink: "#ffffff"
-  exercise-wash: "rgb(156 59 8 / 0.12)"
-  danger: "#a3200f"
+  exercise-wash: "rgb(143 52 5 / 0.1)"
+  danger: "#9a1d0d"
   focus: "#1b47a0"
   floor-dark: "#10141c"
   floor-deep-dark: "#0a0d13"
@@ -203,6 +207,8 @@ Blue-gray sport floor or night poured floor, white line paint, and two saturated
 **The Paint Is Never Alone Rule.** A phase colour always travels with a word (the pill label, the exercise name, "Paused", "of work"). Colour never carries state by itself.
 
 **The Orange Text Rule.** In the light theme key orange on the floor measures 4.8:1, enough for text at any size; keep it on the main floor, since on `floor-deep` it drops to 4.1:1 and should stay at headline size there. Small text on orange uses `exercise-ink`, never the reverse.
+
+**The Rule Line Rule.** Control edges (inputs, outline buttons, the segmented control, the empty drop zone) use `rule`, which holds 3:1 against every floor tone; white `line` paint is for court markings only. Disabled buttons switch to `off-bg`/`off-ink` (5:1), never opacity.
 
 **The Line Is Not A Signal Rule.** White line paint on the light floor is a low-contrast (1.4:1) boundary by design. It frames and divides; it never alone marks a state, a selection or an error.
 

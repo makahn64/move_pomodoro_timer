@@ -25,17 +25,17 @@ export function TimerView({
   let label: string
   let big: string
   let name = ''
-  let next = ''
+  let next: React.ReactNode = ''
   switch (phase) {
     case 'idle':
       label = 'Ready'
       big = clock(config.workMinutes * 60_000)
-      next = step ? `Then ${step.name} · ${minutes(step.minutes)}` : ''
+      next = step ? nextUp(`${step.name} · ${minutes(step.minutes)}`) : ''
       break
     case 'work':
       label = 'Work'
       big = clock(left)
-      next = step ? `Then ${step.name} · ${minutes(step.minutes)}` : ''
+      next = step ? nextUp(`${step.name} · ${minutes(step.minutes)}`) : ''
       break
     case 'exercise':
       label = 'Exercise'
@@ -49,7 +49,7 @@ export function TimerView({
     case 'ready':
       label = 'Up next'
       big = clock(config.workMinutes * 60_000)
-      next = step ? `Then ${step.name} · ${minutes(step.minutes)}` : ''
+      next = step ? nextUp(`${step.name} · ${minutes(step.minutes)}`) : ''
       break
     case 'finished':
       label = 'Sequence done'
@@ -144,5 +144,13 @@ export function TimerView({
         )}
       </div>
     </section>
+  )
+}
+
+function nextUp(text: string): React.JSX.Element {
+  return (
+    <>
+      <strong>Next Up:</strong> {text}
+    </>
   )
 }

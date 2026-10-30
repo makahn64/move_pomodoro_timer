@@ -25,15 +25,15 @@ export function MiniView({
   const empty = config.steps.length === 0
 
   let label: string
-  let detail = ''
+  let detail: React.ReactNode = ''
   switch (phase) {
     case 'idle':
       label = 'Ready'
-      detail = step?.name ? `then ${step.name}` : ''
+      detail = step?.name ? nextUp(step.name) : ''
       break
     case 'work':
       label = 'Work'
-      detail = step ? `then ${step.name}` : ''
+      detail = step ? nextUp(step.name) : ''
       break
     case 'exercise':
       label = 'Exercise'
@@ -135,5 +135,13 @@ export function MiniView({
         </button>
       </div>
     </div>
+  )
+}
+
+function nextUp(name: string): React.JSX.Element {
+  return (
+    <>
+      <strong>Next Up:</strong> {name}
+    </>
   )
 }

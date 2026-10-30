@@ -5,12 +5,13 @@ import icon from '../../resources/icon.png?asset'
 import { AppData, Theme, WindowMode } from '../shared/types'
 import { loadData, saveData } from './store'
 
+// Content sizes; the title bar is added on top so every OS gets the same usable area.
 const SIZES: Record<
   WindowMode,
   { width: number; height: number; minWidth: number; minHeight: number }
 > = {
-  full: { width: 960, height: 720, minWidth: 760, minHeight: 600 },
-  mini: { width: 400, height: 132, minWidth: 400, minHeight: 132 }
+  full: { width: 960, height: 692, minWidth: 760, minHeight: 572 },
+  mini: { width: 400, height: 156, minWidth: 400, minHeight: 156 }
 }
 
 // Sounds must play when MOVE is behind other windows and the user never clicked it.
@@ -21,8 +22,12 @@ let mainWindow: BrowserWindow | null = null
 
 function applyMode(win: BrowserWindow, mode: WindowMode): void {
   const size = SIZES[mode]
-  win.setMinimumSize(size.minWidth, size.minHeight)
-  win.setSize(size.width, size.height)
+  const [outerW, outerH] = win.getSize()
+  const [innerW, innerH] = win.getContentSize()
+  const frameW = outerW - innerW
+  const frameH = outerH - innerH
+  win.setMinimumSize(size.minWidth + frameW, size.minHeight + frameH)
+  win.setSize(size.width + frameW, size.height + frameH)
   win.setResizable(mode === 'full')
   win.setMaximizable(mode === 'full')
   win.setFullScreenable(mode === 'full')
@@ -32,12 +37,14 @@ function createWindow(): void {
   const mode = data.windowMode
   const size = SIZES[mode]
   const win = new BrowserWindow({
-    ...size,
+    width: size.width,
+    height: size.height,
+    useContentSize: true,
     title: 'MOVE',
     show: false,
     autoHideMenuBar: true,
     resizable: mode === 'full',
-    backgroundColor: nativeTheme.shouldUseDarkColors ? '#10141c' : '#d9a868',
+    backgroundColor: nativeTheme.shouldUseDarkColors ? '#10141c' : '#ccdbdc',
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -47,6 +54,7 @@ function createWindow(): void {
     }
   })
   mainWindow = win
+  applyMode(win, mode)
 
   win.on('ready-to-show', () => win.show())
   win.on('closed', () => {
