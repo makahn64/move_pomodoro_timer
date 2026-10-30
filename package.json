@@ -1,6 +1,6 @@
 {
   "name": "move",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A pomodoro timer where every break is an exercise.",
   "main": "./out/main/index.js",
   "author": "Mitch Kahn",
