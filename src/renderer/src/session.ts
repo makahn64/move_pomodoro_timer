@@ -46,6 +46,7 @@ export type SessionAction =
   | { type: 'skip'; now: number }
   | { type: 'tick'; now: number }
   | { type: 'startOver'; now: number }
+  | { type: 'reset'; now: number }
   | { type: 'end'; now: number }
 
 export const initialSession: SessionState = {
@@ -144,6 +145,10 @@ export function reduce(
     case 'startOver':
       if (s.phase !== 'finished') return s
       return beginWork(s, 0, now, config)
+
+    case 'reset':
+      // Drop wherever the session is and run the first work period from now.
+      return { ...beginWork(s, 0, now, config), boundary: null }
 
     case 'end':
       return { ...initialSession, seq: s.seq, boundary: s.boundary }

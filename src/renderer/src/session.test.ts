@@ -151,4 +151,33 @@ describe('session', () => {
     const s = reduce(initialSession, { type: 'startWork', now: 0 }, { workMinutes: 20, steps: [] })
     expect(s.phase).toBe('idle')
   })
+
+  it('reset restarts the first work period from any point, paused or not', () => {
+    const mid = run([
+      ['startWork', 0],
+      ['tick', 20 * MIN],
+      ['tick', 25 * MIN],
+      ['startWork', 26 * MIN],
+      ['pause', 30 * MIN]
+    ])
+    expect(mid.index).toBe(1)
+    const s = run([['reset', 40 * MIN]], mid)
+    expect(s.phase).toBe('work')
+    expect(s.index).toBe(0)
+    expect(s.paused).toBe(false)
+    expect(s.boundary).toBeNull()
+    expect(s.seq).toBe(mid.seq)
+    expect(remainingMs(s, 40 * MIN)).toBe(20 * MIN)
+  })
+
+  it('reset during an exercise goes back to work, not the exercise', () => {
+    const s = run([
+      ['startWork', 0],
+      ['tick', 20 * MIN],
+      ['reset', 21 * MIN]
+    ])
+    expect(s.phase).toBe('work')
+    expect(s.stepName).toBe('')
+    expect(s.index).toBe(0)
+  })
 })

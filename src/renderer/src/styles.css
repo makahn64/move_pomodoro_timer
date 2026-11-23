@@ -1000,3 +1000,41 @@ h2 {
   margin: 0;
   color: var(--ink-soft);
 }
+
+/* ---------- Confirmation dialog ---------- */
+
+.dialog {
+  padding: 0;
+  border: 3px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--floor-raised);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  width: min(420px, calc(100vw - 32px));
+}
+.dialog::backdrop {
+  background: rgb(10 13 19 / 0.5);
+}
+.dialog-panel {
+  display: grid;
+  gap: 12px;
+  padding: 22px 24px 20px;
+}
+.dialog-title {
+  margin: 0;
+  font: 700 24px/1.1 var(--display);
+  letter-spacing: 0.02em;
+}
+.dialog-body {
+  font: 400 15px/1.45 var(--ui);
+  color: var(--ink-soft);
+}
+.dialog-body p {
+  margin: 0;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}

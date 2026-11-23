@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Pause, Play, SkipForward, RotateCcw } from 'lucide-react'
 import type { SessionControls } from '../App'
 import { remainingMs } from '../session'
 import { clock, minutes } from '../format'
 import { CourtRing } from './CourtRing'
+import { ConfirmDialog } from './ConfirmDialog'
 
 interface Props extends SessionControls {
   onOpenSetup: () => void
@@ -16,6 +18,7 @@ export function TimerView({
   onOpenSetup
 }: Props): React.JSX.Element {
   const { phase, index, paused } = session
+  const [confirmReset, setConfirmReset] = useState(false)
   const steps = config.steps
   const step = steps[Math.min(index, steps.length - 1)]
   const left = remainingMs(session, now)
@@ -61,6 +64,8 @@ export function TimerView({
   const showRing = phase === 'work' || phase === 'exercise'
   // After an exercise the ring stays painted in its colour until you start work.
   const lit = phase === 'ready'
+  // Idle is already at the start, and finished has its own Start over.
+  const canReset = phase === 'work' || phase === 'exercise' || phase === 'ready'
 
   return (
     <section className="timer" aria-live="polite">
@@ -69,6 +74,11 @@ export function TimerView({
           {label}
         </span>
         {position && phase !== 'finished' && <span className="position">Step {position}</span>}
+        {canReset && (
+          <button className="btn btn-line btn-small" onClick={() => setConfirmReset(true)}>
+            <RotateCcw size={14} strokeWidth={2.5} aria-hidden /> Reset sequence
+          </button>
+        )}
       </div>
 
       <CourtRing fraction={showRing ? fraction : 1} active={showRing || lit} paused={paused}>
@@ -143,6 +153,22 @@ export function TimerView({
           </>
         )}
       </div>
+
+      <ConfirmDialog
+        open={confirmReset && canReset}
+        title="Reset the sequence?"
+        confirmLabel="Reset and start work"
+        onCancel={() => setConfirmReset(false)}
+        onConfirm={() => {
+          setConfirmReset(false)
+          dispatch('reset')
+        }}
+      >
+        <p>
+          This drops your place at step {index + 1} of {steps.length} and starts the first work
+          period from the top.
+        </p>
+      </ConfirmDialog>
     </section>
   )
 }
